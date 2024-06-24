@@ -15,9 +15,8 @@ type Person struct {
 func main() {
 	person := Person{Name: "John", age: 30, money: 100.0}
 
-	// Cast name to unsafe pointer
-	namePtr := unsafe.Pointer(&person.Name) // nolint
-	nameSize := unsafe.Sizeof(person.Name)  // nolint
+	namePtr := unsafe.Pointer(&person.Name)
+	nameSize := unsafe.Sizeof(person.Name)
 	fmt.Println("namePtr         :", namePtr)
 	fmt.Println("nameSize        :", nameSize)
 
@@ -37,7 +36,6 @@ func main() {
 	fmt.Println("finding agePtr  :", foundAge)
 	*foundAge = 10
 
-	// Get money pointer from name pointer
 	foundMoney := (*float64)(unsafe.Add(agePtr, ageSize))
 	// foundMoney := (*float64)(unsafe.Add(namePtr, nameSize+ageSize)) // also works
 	fmt.Println("finding moneyPtr:", foundMoney)
